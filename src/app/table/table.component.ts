@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DataUser } from '../app/app.model';
+import { DataUser } from '../app.model';
 
 @Component({
   selector: 'app-table',
