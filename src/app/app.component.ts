@@ -13,30 +13,15 @@ import { TableComponent } from '../table/table.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent implements OnInit{
-// onSubmit(event: any) {
-//   this.dataUser.push({
-//     name: this.addUserForm.get('name')?.value,
-//     email: this.addUserForm.get('email')?.value,
-//     address:{
-//       city: this.addUserForm.get('city')?.value,
-//       province: this.addUserForm.get('province')?.value,
-//       zipcode: this.addUserForm.get('zipcode')?.value
-//     }
-//   }) 
-// }
   title: string = 'fif-angular-app';
   dataUser: Array<DataUser> = []; //! buat bikin undefined
-  randomId: string=""; 
-  labelButton1: string = "ini button 1"; 
-  labelButton2: string = "ini button 2"; 
-  backgroundColor: string = "green";
-  name: string = "";
-  userName: string= "";
-  updatedName: string = "";
+
 
   addUserForm! : FormGroup;
 
+<<<<<<< Updated upstream
   // constructor() {
   //   this.addUserForm = new FormGroup({
   //     name: new FormControl('',[Validators.required, Validators.minLength(3)]),
@@ -91,7 +76,21 @@ export class AppComponent implements OnInit{
         zipcode: 1231312
     }}]
   }
+=======
+  constructor(
+    private postDataService : PostdataService
+  ) {
+    
+  }
+
+  ngOnInit(): void {
+    this.title = 'FIF Challenge 2';
+    this.dataUser = this.postDataService.getUsers();
+  }
+
+>>>>>>> Stashed changes
   checkOutput(event:any){
     this.dataUser.push(event)
   }
+
 }

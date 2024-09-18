@@ -43,3 +43,25 @@ table {
     }
   }
   
+  .strike-through {
+    text-decoration: line-through;
+  }
+
+  .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem; // Large font size
+    font-weight: bold; // Bold text
+    color: #ff0000; // Red color for visibility
+    text-align: center; // Center text alignment
+    background-color: #f8f8f8; // Light background color for contrast
+    border: 1px solid #ddd; // Optional: border for better visibility
+    border-radius: 8px; // Optional: rounded corners
+    padding: 20px; // Optional: padding for spacing
+  }
+
+  .deadline-warning {
+    background-color: red;
+    color: white;
+  }

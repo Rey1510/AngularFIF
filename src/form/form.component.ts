@@ -21,7 +21,9 @@ export class FormComponent {
       email: new FormControl('',[Validators.required, Validators.email]),
       city: new FormControl('',[Validators.required]),
       province: new FormControl('',[Validators.required]),
-      zipcode: new FormControl('',[Validators.required])
+      zipcode: new FormControl('',[Validators.required]),
+      payment_deadline: new FormControl(new Date()),
+      boolCompleted: new FormControl(false)
     })
   }
 
@@ -40,6 +42,9 @@ export class FormComponent {
   get provinceForm(){
     return this.addUserForm.get('province');
   }
+  get isComplete(){
+    return this.addUserForm.get('boolCompleted')
+  }
 
   onClick(event:any){
     this.dataUser={
@@ -49,7 +54,9 @@ export class FormComponent {
         city: this.addUserForm.get('city')?.value,
         province: this.addUserForm.get('province')?.value,
         zipcode: this.addUserForm.get('zipcode')?.value
-      }
+      },
+      payment_deadline: this.addUserForm.get('payment_deadline')?.value,
+      isCompleted: this.addUserForm.get('boolCompleted')?.value
     }
     this.submitButton.emit(this.dataUser);
   }
