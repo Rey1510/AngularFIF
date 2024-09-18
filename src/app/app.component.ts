@@ -80,8 +80,16 @@ export class AppComponent implements OnInit{
         city: 'Jakarta',
         province: 'Jaksel',
         zipcode: 1231312
-      }
-    }]
+      },
+      
+    },{
+      name: 'Reyy',
+      email: 'reynard@gmail.com',
+      address: {
+        city: 'Jakarta',
+        province: 'Jaksel',
+        zipcode: 1231312
+    }}]
   }
   checkOutput(event:any){
     this.dataUser.push(event)
