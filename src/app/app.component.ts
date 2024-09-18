@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormComponent } from "../form/form.component";
 import { TableComponent } from '../table/table.component';
+import { PostdataService } from './service/postdata/postdata.service';
 
 @Component({
   selector: 'app-root',
@@ -71,27 +72,36 @@ export class AppComponent implements OnInit{
   //   this.backgroundColor = 'blue'
   // }
 
+  constructor(
+    private postDataService : PostdataService
+  ) {
+
+  }
+
   ngOnInit(): void {
     this.title = 'FIF Challenge 1';
-    this.dataUser = [{
-      name: 'Reyy',
-      email: 'reynard@gmail.com',
-      address: {
-        city: 'Jakarta',
-        province: 'Jaksel',
-        zipcode: 1231312
-      },
+    this.dataUser = this.postDataService.getUsers();
+    // this.dataUser = [{
+    //   name: 'Reyy',
+    //   email: 'reynard@gmail.com',
+    //   address: {
+    //     city: 'Jakarta',
+    //     province: 'Jaksel',
+    //     zipcode: 1231312
+    //   },
       
-    },{
-      name: 'Reyy',
-      email: 'reynard@gmail.com',
-      address: {
-        city: 'Jakarta',
-        province: 'Jaksel',
-        zipcode: 1231312
-    }}]
+    // },{
+    //   name: 'Reyy',
+    //   email: 'reynard@gmail.com',
+    //   address: {
+    //     city: 'Jakarta',
+    //     province: 'Jaksel',
+    //     zipcode: 1231312
+    // }}]
   }
+
+
   checkOutput(event:any){
-    this.dataUser.push(event)
+    this.postDataService.postUsers(event);
   }
 }
