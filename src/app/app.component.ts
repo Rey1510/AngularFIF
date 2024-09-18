@@ -21,9 +21,9 @@ export class AppComponent implements OnInit{
 
 
   addUserForm! : FormGroup;
-  
+
   constructor(
-    private postDataService : PostdataService;
+    private postDataService : PostdataService
   ) {
     
   }

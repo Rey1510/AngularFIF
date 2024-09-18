@@ -22,7 +22,7 @@ export class FormComponent {
       city: new FormControl('',[Validators.required]),
       province: new FormControl('',[Validators.required]),
       zipcode: new FormControl('',[Validators.required]),
-      payment_deadline: new FormControl(new Date()),
+      payment_deadline: new FormControl('', [Validators.required]),
       boolCompleted: new FormControl(false)
     })
   }
@@ -41,6 +41,9 @@ export class FormComponent {
   }
   get provinceForm(){
     return this.addUserForm.get('province');
+  }
+  get paymentDeadlineForm() {
+    return this.addUserForm.get('payment_deadline');
   }
   get isComplete(){
     return this.addUserForm.get('boolCompleted')

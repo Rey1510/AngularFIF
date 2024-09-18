@@ -50,6 +50,15 @@
     <div class="validation-error" *ngIf="zipcodeForm?.invalid">
       Please input your zipcode.
     </div>
+
+    <div>
+      <label for="payment_deadline">Payment Deadline:</label>
+      <input id="payment_deadline" type="date" formControlName="payment_deadline">
+    </div>
+  
+    <div class="validation-error" *ngIf="paymentDeadlineForm?.invalid">
+      Please select a payment deadline.
+    </div>
   
     <div>
       <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
