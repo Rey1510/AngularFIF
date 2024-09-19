@@ -68,7 +68,7 @@ export class AppComponent implements OnInit{
     this.httpRequestService.getData().subscribe((res: any) => {
     this.isLoading = true;
     this.dataUser = res
-    console.log(res);
+    // console.log(res);
   }, (err) => {
     this.isLoading = false;
     console.error('Error fetching data:', err);
