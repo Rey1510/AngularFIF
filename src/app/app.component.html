@@ -16,7 +16,7 @@
 <p>{{'Reyy' | uppercase}}</p>
 <p>{{today | date:'MM-d-YYYY'}}</p>
 
-<ul>
+<!-- <ul>
   <li *ngFor="let item of dataUser">
     {{item.address.province}}
     <div [ngSwitch]="item.address.zone">
@@ -26,4 +26,15 @@
       <div *ngSwitchDefault>kuning</div>
     </div>
   </li>
-</ul>
+</ul> -->
+
+<div *ngIf="!isLoading">
+  <button (click)="createUser()">Create User</button>
+  <div *ngFor="let item of dataUser">
+    {{item.name}}
+  </div>
+</div>
+
+<div *ngIf="isLoading">
+Loading
+</div>

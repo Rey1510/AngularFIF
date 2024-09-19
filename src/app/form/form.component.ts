@@ -41,16 +41,16 @@ export class FormComponent {
     return this.addUserForm.get('province');
   }
 
-  onClick(event:any){
-    this.dataUser={
-      name: this.addUserForm.get('name')?.value,
-      email: this.addUserForm.get('email')?.value,
-      address:{
-        city: this.addUserForm.get('city')?.value,
-        province: this.addUserForm.get('province')?.value,
-        zipcode: this.addUserForm.get('zipcode')?.value
-      }
-    }
-    this.submitButton.emit(this.dataUser);
-  }
+  // onClick(event:any){
+  //   this.dataUser={
+  //     name: this.addUserForm.get('name')?.value,
+  //     email: this.addUserForm.get('email')?.value,
+  //     address:{
+  //       city: this.addUserForm.get('city')?.value,
+  //       province: this.addUserForm.get('province')?.value,
+  //       zipcode: this.addUserForm.get('zipcode')?.value
+  //     }
+  //   }
+  //   this.submitButton.emit(this.dataUser);
+  // }
 }
