@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormComponent } from "../form/form.component";
 import { TableComponent } from '../table/table.component';
-import { HttpRequestService } from './service/postdata/http-service/http-request.service';
+import { HttpRequestService } from './service/http-service/http-request.service';
 // import { PostdataService } from './service/postdata/postdata.service';
 
 @Component({

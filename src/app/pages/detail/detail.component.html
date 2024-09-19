@@ -1,0 +1,89 @@
+<form [formGroup]="addUserForm" (ngSubmit)="onClick($event)">
+    <div>
+      <label for="name">Input name :</label>
+      <input id="name" formControlName="name">
+    </div>
+    
+   
+    <div class="validation-error" *ngIf="nameForm?.invalid">
+      <span *ngIf="nameForm?.errors?.['required']">Please input your name.</span>
+      <span *ngIf="nameForm?.errors?.['minlength']">Name must be at least 3 characters long.</span>
+    </div>
+    
+    <div>
+      <label for="username">Input username :</label>
+      <input id="username" formControlName="username">
+    </div>
+    <div class="validation-error" *ngIf="usernameForm?.invalid && usernameForm?.touched">
+      <span *ngIf="usernameForm?.errors?.['required']">Please input your username.</span>
+    </div>
+
+    <div>
+      <label for="email">Input email :</label>
+      <input id="email" formControlName="email">
+    </div>
+    
+   
+    <div class="validation-error" *ngIf="emailForm?.invalid">
+      <span *ngIf="emailForm?.errors?.['required']">Please input an email address.</span>
+      <span *ngIf="emailForm?.errors?.['email']">Please enter a valid email address.</span>
+    </div>
+
+    <div>
+      <label for="basicSalary">Input basic salary :</label>
+      <input id="basicSalary" formControlName="basicSalary" type="number">
+    </div>
+    <div class="validation-error" *ngIf="basicSalaryForm?.invalid && basicSalaryForm?.touched">
+      Please input your basic salary.
+    </div>
+
+    <div>
+      <label for="age">Input age :</label>
+      <input id="age" formControlName="age" type="number">
+    </div>
+    <div class="validation-error" *ngIf="ageForm?.invalid && ageForm?.touched">
+      Please input your age.
+    </div>
+  
+    <div>
+      <label for="city">Input city :</label>
+      <input id="city" formControlName="city">
+    </div>
+  
+    <div class="validation-error" *ngIf="cityForm?.invalid">
+      Please input your city.
+    </div>
+  
+    <div>
+      <label for="province">Input province :</label>
+      <input id="province" formControlName="province">
+    </div>
+  
+   
+    <div class="validation-error" *ngIf="provinceForm?.invalid">
+      Please input your province.
+    </div>
+  
+    <div>  
+      <label for="zipcode">Input zipcode :</label>
+      <input id="zipcode" formControlName="zipcode">
+    </div>
+  
+   
+    <div class="validation-error" *ngIf="zipcodeForm?.invalid">
+      Please input your zipcode.
+    </div>
+
+    <div>
+      <label for="payment_deadline">Payment Deadline:</label>
+      <input id="payment_deadline" type="date" formControlName="payment_deadline">
+    </div>
+  
+    <div class="validation-error" *ngIf="paymentDeadlineForm?.invalid">
+      Please select a payment deadline.
+    </div>
+  
+    <div>
+      <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
+    </div>
+  </form>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataUser } from '../../../app.model';
+import { DataUser } from '../../app.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,6 @@ import { DataUser } from '../../../app.model';
 export class HttpRequestService {
 
   apiUrl: string = 'https://6580f9853dfdd1b11c424344.mockapi.io/rakamin/employee';
-  userData: any;
 
   constructor(
     private httpClient: HttpClient

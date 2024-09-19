@@ -1,21 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataUser } from '../app/app.model';
+import { DataUser } from '../../app.model';
+import { HttpRequestService } from '../../service/http-service/http-request.service';
 
 @Component({
   selector: 'app-form',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './form.component.html',
-  styleUrl: './form.component.scss'
+  templateUrl: './detail.component.html',
+  styleUrl: './detail.component.scss'
 })
-export class FormComponent {
+export class DetailComponent implements OnInit{
+  title: String = '';
   addUserForm! : FormGroup;
   dataUser!: DataUser;
   @Output() submitButton = new EventEmitter<DataUser>();
 
-  constructor() {
+  constructor(
+    private httpRequestService : HttpRequestService
+  ) {
     this.addUserForm = new FormGroup({
       payment_deadline: new FormControl('', [Validators.required]),
       username: new FormControl('',[Validators.required]),
@@ -30,6 +34,10 @@ export class FormComponent {
     })
   }
   
+  ngOnInit(): void {
+    this.title = 'Table Detail';
+  }
+
   get paymentDeadlineForm() {
     return this.addUserForm.get('payment_deadline');
   }
@@ -76,5 +84,11 @@ export class FormComponent {
     };
     this.submitButton.emit(this.dataUser);
   }
+
+  createUser(event : any) {
+    this.httpRequestService.createUser(event).subscribe((res : any) => {
+      console.log("Sukses create user", res);
+      });
+    }
 
   }

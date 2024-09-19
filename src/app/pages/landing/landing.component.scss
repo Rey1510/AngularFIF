@@ -1,0 +1,83 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+  
+    th, td {
+      padding: 12px 15px;
+    }
+  
+    thead {
+      background-color: #007bff;
+      color: white;
+  
+      th {
+        font-weight: bold;
+      }
+    }
+  
+    tbody tr {
+      border-bottom: 1px solid #dddddd;
+      
+      &:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+  
+      &:hover {
+        background-color: #f1f1f1;
+      }
+    }
+  
+    tbody td {
+      color: #333;
+    }
+  
+    th, td {
+      border-right: 1px solid #ddd;
+  
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  
+  .strike-through {
+    text-decoration: line-through;
+  }
+
+  .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem; // Large font size
+    font-weight: bold; // Bold text
+    color: #ff0000; // Red color for visibility
+    text-align: center; // Center text alignment
+    background-color: #f8f8f8; // Light background color for contrast
+    border: 1px solid #ddd; // Optional: border for better visibility
+    border-radius: 8px; // Optional: rounded corners
+    padding: 20px; // Optional: padding for spacing
+  }
+
+  .deadline-warning {
+    background-color: red;
+    color: white;
+  }
+
+  .add-button {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .add-button:hover {
+    background-color: #45a049;
+  }
