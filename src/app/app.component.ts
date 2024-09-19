@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
 
   constructor(
     // private postDataService : PostdataService
-    private httpRequest : HttpRequestService
+    private httpRequestService : HttpRequestService
   ) {
     
   }
@@ -33,12 +33,38 @@ export class AppComponent implements OnInit{
   
 
   ngOnInit(): void {
-    this.title = 'FIF Challenge 2';
+    this.title = 'FIF Challenge 3';
+    this.fetchDataUser();
     // this.dataUser = this.postDataService.getUsers();
   }
 
   checkOutput(event:any){
     this.dataUser.push(event)
+  }
+
+  fetchDataUser() {
+    this.httpRequestService.getData().subscribe((res: any) => {
+    this.dataUser = res
+    // console.log(res);
+  }, (err) => {
+    console.error('Error fetching data:', err);
+  });
+  }
+
+  createUser(event : any) {
+  this.httpRequestService.createUser(event).subscribe((res : any) => {
+    console.log("Sukses create user", res);
+    this.fetchDataUser()
+    });
+  }
+
+  deleteUser(id: string) {
+    this.httpRequestService.deleteUser(id).subscribe(() => {
+      console.log('User deleted successfully');
+      this.fetchDataUser();
+    }, (err) => {
+      console.error('Error deleting user:', err);
+    });
   }
 
 }

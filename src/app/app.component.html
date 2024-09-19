@@ -1,5 +1,5 @@
 <div class="container">
   <h2 class="title">{{title}}</h2>
   
-  <app-form (submitButton)="checkOutput($event)"></app-form>
-  <app-table [dataUser]="dataUser"></app-table>
+  <app-form (submitButton)="createUser($event)"></app-form>
+  <app-table [dataUser]="dataUser" (deleteById)="deleteUser($event)"></app-table>

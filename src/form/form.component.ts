@@ -74,8 +74,7 @@ export class FormComponent {
       isChecked: this.addUserForm.get('isChecked')?.value,
       age: this.addUserForm.get('age')?.value
     };
+    this.submitButton.emit(this.dataUser);
   }
-
-  
 
 }

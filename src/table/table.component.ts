@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataUser } from '../app/app.model';
 // import { PostdataService } from '../app/service/postdata/postdata.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpRequestService } from '../app/service/postdata/http-service/http-request.service';
 
 @Component({
   selector: 'app-table',
@@ -16,21 +17,24 @@ export class TableComponent {
 
   constructor(
     // private postDataService: PostdataService,
+    private httpRequestService: HttpRequestService,
     private snackBar: MatSnackBar
   ) { }
 
   @Input() dataUser: Array<DataUser> = [];
+  @Output() deleteById = new EventEmitter<string>();
 
-  // deleteData(event: any) {
-  //   this.postDataService.deleteUsers(event);
-  //   this.snackBar.open('Data successfully deleted', 'Close', {
-  //     duration: 5000
-  //   });
-  // }
+  deleteData(event: any) {
+    // this.postDataService.deleteUsers(event);
+    this.snackBar.open('Data successfully deleted', 'Close', {
+      duration: 5000
+    });
+    this.deleteById.emit(event)
+  }
 
-  // onCompleted(index: number) {
-  //   this.postDataService.toggleCompleted(index);
-  // }
+  onCompleted(index: number) {
+    // this.httpRequestService.toggleCompleted(index);
+  }
 
   isDeadlineWarning(date: Date): boolean {
     const today = new Date();
@@ -44,4 +48,6 @@ export class TableComponent {
 
     return today >= threeDaysBeforeToday && today <= deadline;
   }
+
+
 }
