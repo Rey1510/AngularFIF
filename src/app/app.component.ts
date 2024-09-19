@@ -5,7 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormComponent } from "../form/form.component";
 import { TableComponent } from '../table/table.component';
-import { PostdataService } from './service/postdata/postdata.service';
+import { HttpRequestService } from './service/postdata/http-service/http-request.service';
+// import { PostdataService } from './service/postdata/postdata.service';
 
 @Component({
   selector: 'app-root',
@@ -23,14 +24,17 @@ export class AppComponent implements OnInit{
   addUserForm! : FormGroup;
 
   constructor(
-    private postDataService : PostdataService
+    // private postDataService : PostdataService
+    private httpRequest : HttpRequestService
   ) {
     
   }
 
+  
+
   ngOnInit(): void {
     this.title = 'FIF Challenge 2';
-    this.dataUser = this.postDataService.getUsers();
+    // this.dataUser = this.postDataService.getUsers();
   }
 
   checkOutput(event:any){

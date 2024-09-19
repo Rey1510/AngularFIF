@@ -1,13 +1,13 @@
 export interface DataUser{
+    paymentDeadline: Date;
+    username: string;
     name: string;
     email: string;
-    address: Address;
-    payment_deadline: Date,
-    isCompleted: boolean
-}
-
-interface Address {
-    zipcode?: number; //? biar bikin optional
+    basicSalary: string;
     city: string;
     province: string;
+    zipcode: string;
+    isChecked: boolean;
+    age: number;
+    id?: string;
 }

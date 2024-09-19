@@ -1,30 +1,30 @@
-import { Injectable } from '@angular/core';
-import { userDataPublic } from '../../user.data';
+// import { Injectable } from '@angular/core';
+// // import { userDataPublic } from '../../user.data';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class PostdataService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class PostdataService {
 
-  userData = userDataPublic
+//   userData = userDataPublic
 
-  getUsers(){
-    return this.userData
-  }
+//   getUsers(){
+//     return this.userData
+//   }
 
-  postUsers(event : any) {
-    this.userData.push(event);
-  }
+//   postUsers(event : any) {
+//     this.userData.push(event);
+//   }
 
-  deleteUsers(event : any) {
-    this.userData.splice(event,1);
-  }
+//   deleteUsers(event : any) {
+//     this.userData.splice(event,1);
+//   }
 
-  toggleCompleted(index: number) {
-    if (this.userData[index]) {
-      this.userData[index].isCompleted = this.userData[index].isCompleted;
-    }
-  }
+//   toggleCompleted(index: number) {
+//     if (this.userData[index]) {
+//       this.userData[index].isCompleted = this.userData[index].isCompleted;
+//     }
+//   }
 
-  constructor() { }
-}
+//   constructor() { }
+// }

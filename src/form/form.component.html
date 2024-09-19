@@ -9,7 +9,15 @@
       <span *ngIf="nameForm?.errors?.['required']">Please input your name.</span>
       <span *ngIf="nameForm?.errors?.['minlength']">Name must be at least 3 characters long.</span>
     </div>
-  
+    
+    <div>
+      <label for="username">Input username :</label>
+      <input id="username" formControlName="username">
+    </div>
+    <div class="validation-error" *ngIf="usernameForm?.invalid && usernameForm?.touched">
+      <span *ngIf="usernameForm?.errors?.['required']">Please input your username.</span>
+    </div>
+
     <div>
       <label for="email">Input email :</label>
       <input id="email" formControlName="email">
@@ -20,13 +28,28 @@
       <span *ngIf="emailForm?.errors?.['required']">Please input an email address.</span>
       <span *ngIf="emailForm?.errors?.['email']">Please enter a valid email address.</span>
     </div>
+
+    <div>
+      <label for="basicSalary">Input basic salary :</label>
+      <input id="basicSalary" formControlName="basicSalary" type="number">
+    </div>
+    <div class="validation-error" *ngIf="basicSalaryForm?.invalid && basicSalaryForm?.touched">
+      Please input your basic salary.
+    </div>
+
+    <div>
+      <label for="age">Input age :</label>
+      <input id="age" formControlName="age" type="number">
+    </div>
+    <div class="validation-error" *ngIf="ageForm?.invalid && ageForm?.touched">
+      Please input your age.
+    </div>
   
     <div>
       <label for="city">Input city :</label>
       <input id="city" formControlName="city">
     </div>
   
- 
     <div class="validation-error" *ngIf="cityForm?.invalid">
       Please input your city.
     </div>
