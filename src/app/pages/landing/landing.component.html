@@ -1,46 +1,51 @@
-<h2>{{ title }}</h2>
-<br>
-<button (click)="addUser()" class="add-button">Add User</button>
-<br><br>
-<table>
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Id</th>
-      <th>Nama</th>
-      <th>Age</th>
-      <th>Email</th>
-      <th>Username</th>
-      <th>Basic Salary</th>
-      <th>Address</th>
-      <th>Payment Deadline</th>
-      <th>Action</th>
-      <th>Completed?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of dataUser; let id = index" [ngStyle]="{'text-decoration': item.isChecked ? 'line-through' : 'none'}" (click)="redirectToDetail(item.id)">
-      <td>{{ id + 1 }}</td>
-      <td>{{ item.id }}</td>
-      <td>{{ item.name }}</td>
-      <td>{{ item.age }}</td>
-      <td>{{ item.email }}</td>
-      <td>{{ item.username }}</td>
-      <td>{{ item.basicSalary }}</td>
-      <td>{{ item.city }}, {{ item.province }} {{ item.zipcode }}</td>
-      <td>{{ item.paymentDeadline | date }}</td>
-      <td>
-        <button (click)="deleteData(item.id); $event.stopPropagation()">
-          <img src="https://img.icons8.com/?size=48&id=7837&format=png" width="30" height="30">
-        </button>
-      </td>
-      <td>
-        <div (click)="$event.stopPropagation()">
-          <label for="isChecked">Is Checked:</label>
-          <input id="isChecked" type="checkbox" [(ngModel)]="item.isChecked" (change)="onToggleIsChecked(item.id, item)">
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<!-- <div class="no-data" *ngIf="dataUser.length === 0">There is no data</div> -->
+<app-logout></app-logout>
+
+<div class="container">
+    <h2>{{ title }}</h2>
+    <br>
+    <button (click)="addUser()" class="add-button">Add User</button>
+    <br><br>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Id</th>
+          <th>Nama</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Basic Salary</th>
+          <th>Address</th>
+          <th>Payment Deadline</th>
+          <th>Action</th>
+          <th>Completed?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataUser; let id = index" 
+            [ngStyle]="{'text-decoration': item.isChecked ? 'line-through' : 'none'}" 
+            (click)="redirectToDetail(item.id)">
+          <td>{{ id + 1 }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.age }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.username }}</td>
+          <td>{{ item.basicSalary }}</td>
+          <td>{{ item.city }}, {{ item.province }} {{ item.zipcode }}</td>
+          <td>{{ item.paymentDeadline | date }}</td>
+          <td>
+            <button (click)="deleteData(item.id); $event.stopPropagation()">
+              <img src="https://img.icons8.com/?size=48&id=7837&format=png" width="30" height="30">
+            </button>
+          </td>
+          <td>
+            <div (click)="$event.stopPropagation()">
+              <label for="isChecked">Is Checked:</label>
+              <input id="isChecked" type="checkbox" [(ngModel)]="item.isChecked" (change)="onToggleIsChecked(item.id, item)">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

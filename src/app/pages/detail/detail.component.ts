@@ -5,11 +5,12 @@ import { DataUser } from '../../app.model';
 import { HttpRequestService } from '../../service/http-service/http-request.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LogoutComponent } from "../../logout/logout.component";
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, LogoutComponent],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })

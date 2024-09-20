@@ -5,11 +5,12 @@ import { DataUser } from '../../app.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpRequestService } from '../../service/http-service/http-request.service';
 import { Router } from '@angular/router';
+import { LogoutComponent } from "../../logout/logout.component";
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, LogoutComponent],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
