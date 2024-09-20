@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { DataUser } from '../../app.model';
 import { HttpRequestService } from '../../service/http-service/http-request.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-detail',
@@ -22,7 +23,8 @@ export class DetailComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private httpRequestService : HttpRequestService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.addUserForm = new FormGroup({
       payment_deadline: new FormControl('', [Validators.required]),
@@ -108,20 +110,27 @@ export class DetailComponent implements OnInit{
 
   createUser(event : any) {
     this.httpRequestService.createUser(event).subscribe((res : any) => {
+      this.snackBar.open('Data successfully created', 'Close', {
+        duration: 5000
+      });
       console.log("Sukses create user", res);
       });
     }
 
     updateUser(id: string, user: DataUser) {
       this.httpRequestService.updateUser(id, user).subscribe((res: any) => {
+        this.snackBar.open('Data successfully updated', 'Close', {
+          duration: 5000
+        });
         console.log("User updated successfully", res);
       });
     }
 
     fetchUserData(id: string) {
       this.httpRequestService.getUserById(id).subscribe((user: DataUser) => {
+        const formattedDate = user.paymentDeadline ? new Date(user.paymentDeadline).toISOString().split('T')[0] : '';
         this.addUserForm.patchValue({
-          payment_deadline: user.paymentDeadline,
+          payment_deadline: formattedDate,
           username: user.username,
           name: user.name,
           email: user.email,

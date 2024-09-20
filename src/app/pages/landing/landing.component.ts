@@ -66,4 +66,16 @@ export class LandingComponent {
 
     return today >= threeDaysBeforeToday && today <= deadline;
   }
+
+  onToggleIsChecked(userId: any, event: any) {
+    this.httpRequestService.toggleIsChecked(userId, event).subscribe((updatedUser: DataUser) => {
+      this.snackBar.open('Checked status updated', 'Close', {
+        duration: 3000
+      });
+      console.log('User checked status updated', updatedUser);
+    }, (err) => {
+      console.error('Error updating checked status:', err);
+    });
+  }
+
 }

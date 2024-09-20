@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class HttpRequestService {
 
   apiUrl: string = 'https://6580f9853dfdd1b11c424344.mockapi.io/rakamin/employee';
+  userData! : DataUser;
 
   constructor(
     private httpClient: HttpClient
@@ -36,10 +37,8 @@ export class HttpRequestService {
     return this.httpClient.get<DataUser>(`${this.apiUrl}/${id}`);
   }
 
-  // toggleCompleted(index: number) {
-  //   if (this.userData[index]) {
-  //     this.userData[index].isCompleted = this.userData[index].isCompleted;
-  //   }
-  // }
+  toggleIsChecked(id: string, isChecked: boolean): Observable<DataUser> {
+    return this.httpClient.patch<DataUser>(`${this.apiUrl}/${id}`, isChecked);
+  }
 
 }
