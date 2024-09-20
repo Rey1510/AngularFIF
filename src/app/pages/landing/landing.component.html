@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of dataUser; let id = index" [ngClass]="{'strikethrough': item.isChecked}" (click)="redirectToDetail(item.id)">
+    <tr *ngFor="let item of dataUser; let id = index" [ngStyle]="{'text-decoration': item.isChecked ? 'line-through' : 'none'}" (click)="redirectToDetail(item.id)">
       <td>{{ id + 1 }}</td>
       <td>{{ item.id }}</td>
       <td>{{ item.name }}</td>
@@ -37,7 +37,7 @@
       <td>
         <div (click)="$event.stopPropagation()">
           <label for="isChecked">Is Checked:</label>
-          <input id="isChecked" type="checkbox" [(ngModel)]="item.isChecked" (change)="onToggleIsChecked($event, item.id)">
+          <input id="isChecked" type="checkbox" [(ngModel)]="item.isChecked" (change)="onToggleIsChecked(item.id, item)">
         </div>
       </td>
     </tr>

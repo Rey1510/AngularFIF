@@ -68,7 +68,7 @@ export class LandingComponent {
   }
 
   onToggleIsChecked(userId: any, event: any) {
-    this.httpRequestService.toggleIsChecked(userId, event).subscribe((updatedUser: DataUser) => {
+    this.httpRequestService.updateUser(userId, event).subscribe((updatedUser: DataUser) => {
       this.snackBar.open('Checked status updated', 'Close', {
         duration: 3000
       });
