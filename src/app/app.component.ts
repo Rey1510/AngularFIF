@@ -50,7 +50,7 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.title = 'FIF Challenge 1';
     const userData = this.userDataService.getUsers();
-    console.log(userData)
+    // console.log(userData)
     this.dataUser=userData;
     this.fetchDataUser();
   }

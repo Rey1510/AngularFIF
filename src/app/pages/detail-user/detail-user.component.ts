@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LogoutComponent } from "../../logout/logout.component";
 
 @Component({
   selector: 'app-detail-user',
   standalone: true,
-  imports: [],
+  imports: [LogoutComponent],
   templateUrl: './detail-user.component.html',
   styleUrl: './detail-user.component.scss'
 })
