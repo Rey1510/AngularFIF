@@ -3,9 +3,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DataUser } from '../../app.model';
 import { HttpRequestService } from '../../service/http-service/http-request.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-form',
+  selector: 'app-detail',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './detail.component.html',
@@ -15,10 +16,13 @@ export class DetailComponent implements OnInit{
   title: String = '';
   addUserForm! : FormGroup;
   dataUser!: DataUser;
-  @Output() submitButton = new EventEmitter<DataUser>();
+  userId: string | null = null;
+  isEditing: boolean = false;
 
   constructor(
-    private httpRequestService : HttpRequestService
+    private route: ActivatedRoute,
+    private httpRequestService : HttpRequestService,
+    private router: Router
   ) {
     this.addUserForm = new FormGroup({
       payment_deadline: new FormControl('', [Validators.required]),
@@ -36,6 +40,16 @@ export class DetailComponent implements OnInit{
   
   ngOnInit(): void {
     this.title = 'Table Detail';
+    this.userId = this.route.snapshot.paramMap.get('id') || '';
+
+    // if (this.userId !== '0') {
+    //   this.fetchUserData(this.userId);
+    // }
+
+    if (this.userId !== '0') {
+      this.isEditing = true;
+      this.fetchUserData(this.userId);
+    }
   }
 
   get paymentDeadlineForm() {
@@ -82,13 +96,49 @@ export class DetailComponent implements OnInit{
       isChecked: this.addUserForm.get('isChecked')?.value,
       age: this.addUserForm.get('age')?.value
     };
-    this.submitButton.emit(this.dataUser);
+    if (this.isEditing === true) {
+      const temp: any = this.userId
+      this.updateUser(temp, this.dataUser);
+    } else {
+      this.createUser(this.dataUser);
+    }
   }
+
+  
 
   createUser(event : any) {
     this.httpRequestService.createUser(event).subscribe((res : any) => {
       console.log("Sukses create user", res);
       });
+    }
+
+    updateUser(id: string, user: DataUser) {
+      this.httpRequestService.updateUser(id, user).subscribe((res: any) => {
+        console.log("User updated successfully", res);
+      });
+    }
+
+    fetchUserData(id: string) {
+      this.httpRequestService.getUserById(id).subscribe((user: DataUser) => {
+        this.addUserForm.patchValue({
+          payment_deadline: user.paymentDeadline,
+          username: user.username,
+          name: user.name,
+          email: user.email,
+          basicSalary: user.basicSalary,
+          city: user.city,
+          province: user.province,
+          zipcode: user.zipcode,
+          isChecked: user.isChecked,
+          age: user.age
+        });
+      }, (err) => {
+        console.error('Error fetching user data:', err);
+      });
+    }
+
+    getButtonLabel(): string {
+      return this.userId && this.userId !== '0' ? 'Simpan Perubahan' : 'Simpan';
     }
 
   }

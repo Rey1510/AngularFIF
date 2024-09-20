@@ -84,6 +84,6 @@
     </div>
   
     <div>
-      <button type="submit" [disabled]="addUserForm.invalid">Submit</button>
-    </div>
+        <button type="submit" [disabled]="addUserForm.invalid">{{ isEditing ? 'Change' : 'Submit' }}</button>
+      </div>
   </form>

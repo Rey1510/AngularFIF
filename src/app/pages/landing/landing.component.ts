@@ -2,65 +2,56 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataUser } from '../../app.model';
-// import { PostdataService } from '../app/service/postdata/postdata.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpRequestService } from '../../service/http-service/http-request.service';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-table',
+  selector: 'app-landing',
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss']
 })
 export class LandingComponent {
+  dataUser!: DataUser[];
   title: string = 'Table All User';
 
   constructor(
     private router: Router,
-    // private postDataService: PostdataService,
     private httpRequestService: HttpRequestService,
     private snackBar: MatSnackBar
   ) { }
 
-  @Input() dataUser: Array<DataUser> = [];
-  @Output() deleteById = new EventEmitter<string>();
-
   ngOnInit(): void {
-    this.title = 'Table All User';
     this.fetchDataUser();
   }
 
   deleteData(event: any) {
-    // this.postDataService.deleteUsers(event);
-    this.snackBar.open('Data successfully deleted', 'Close', {
-      duration: 5000
-    });
-    this.deleteById.emit(event)
-  }
-
-  onCompleted(index: number) {
-    // this.httpRequestService.toggleCompleted(index);
-  }
-
-  fetchDataUser() {
-    this.httpRequestService.getData().subscribe((res: any) => {
-    this.dataUser = res
-    // console.log(res);
-  }, (err) => {
-    console.error('Error fetching data:', err);
-  });
-  }
-
-  deleteUser(id: string) {
-    this.httpRequestService.deleteUser(id).subscribe(() => {
-      console.log('User deleted successfully');
+    this.httpRequestService.deleteUser(event).subscribe(() => {
+      this.snackBar.open('Data successfully deleted', 'Close', {
+        duration: 5000
+      });
       this.fetchDataUser();
     }, (err) => {
       console.error('Error deleting user:', err);
     });
+  }
+
+  fetchDataUser() {
+    this.httpRequestService.getData().subscribe((res: any) => {
+      this.dataUser = res;
+    }, (err) => {
+      console.error('Error fetching data:', err);
+    });
+  }
+
+  addUser() {
+    this.router.navigate(['/detail/0/add']);
+  }
+
+  redirectToDetail(id: any) {
+      this.router.navigate([`/detail/${id}/put`]);
   }
 
   isDeadlineWarning(date: Date): boolean {
@@ -75,9 +66,4 @@ export class LandingComponent {
 
     return today >= threeDaysBeforeToday && today <= deadline;
   }
-
-  addUser() {
-    this.router.navigate(['/detail', 'new']);
-  }
-
 }

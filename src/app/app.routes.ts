@@ -5,8 +5,8 @@ import { DetailComponent } from './pages/detail/detail.component';
 
 export const routes: Routes = [
     {path: '', component: LandingComponent},
-    {path: 'detail/:id', component: DetailComponent},
-    {path: 'detail/new', component: DetailComponent},
+    {path: 'detail/:id/:methode', component: DetailComponent},
+    // {path: 'detail/new', component: DetailComponent},
     {path: '404', component: NotFoundComponent},
     {path: '**', redirectTo: '404'}
 ];
